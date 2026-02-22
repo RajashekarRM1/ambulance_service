@@ -6,7 +6,7 @@ function Navbar() {
           🚑 <span>Hyderabad Ambulance</span>
         </div>
 
-        <a href="tel:+918247582810" className="nav-call">
+        <a href="tel:+917989827051" className="nav-call">
           📞 Call Now
         </a>
       </div>

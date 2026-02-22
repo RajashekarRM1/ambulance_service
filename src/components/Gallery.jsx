@@ -1,18 +1,51 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// ✅ Import images
+import img1 from "../assets/image1.jpg";
+import img2 from "../assets/image2.jpg";
+import img3 from "../assets/image3.jpg";
+import img4 from "../assets/image4.jpg";
+import img5 from "../assets/image5.jpg";
+import img6 from "../assets/image6.jpg";
+import img7 from "../assets/image7.jpg";
+import img8 from "../assets/image8.jpg";
+import img9 from "../assets/image9.jpg";
 
 function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const images = [
-    "https://images.unsplash.com/photo-1587745416684-47953f16f02f",
-    "https://images.unsplash.com/photo-1603398938378-e54eab446dde",
-    "https://images.unsplash.com/photo-1588776814546-ec7e9c3cbd94",
-    "https://images.unsplash.com/photo-1586773860418-d37222d8fce3",
-    "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b",
-    "https://images.unsplash.com/photo-1504439904031-93ded9f93e4e",
-    "https://images.unsplash.com/photo-1580281657527-47a6e92f3f61",
-    "https://images.unsplash.com/photo-1600959907703-125ba1374a12",
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img6,
+    img7,
+    img8,
+    img9
   ];
+
+  /* ✅ Close modal on ESC key */
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setSelectedImage(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  /* ✅ Disable background scroll when modal open */
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [selectedImage]);
 
   return (
     <section className="gallery">
@@ -31,13 +64,24 @@ function Gallery() {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* ✅ Modal */}
       {selectedImage && (
-        <div className="modal">
-          <span className="close-btn" onClick={() => setSelectedImage(null)}>
+        <div
+          className="modal"
+          onClick={() => setSelectedImage(null)} // click outside closes
+        >
+          <span
+            className="close-btn"
+            onClick={() => setSelectedImage(null)}
+          >
             ✖
           </span>
-          <img src={selectedImage} alt="Full Ambulance" />
+
+          <img
+            src={selectedImage}
+            alt="Full Ambulance"
+            onClick={(e) => e.stopPropagation()} // prevent close when clicking image
+          />
         </div>
       )}
     </section>

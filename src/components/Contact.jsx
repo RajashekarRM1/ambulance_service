@@ -3,8 +3,8 @@ function Contact() {
     <section className="contact">
       <h2>Contact Us</h2>
       <p>📍 Hyderabad, Telangana</p>
-      <p>📞 +91 8247582810</p>
-      <a href="tel:+919876543210" className="contact-btn">
+      <p>📞 +91 7989827051</p>
+      <a href="tel:+917989827051" className="contact-btn">
         Call Emergency
       </a>
     </section>
